@@ -1,0 +1,60 @@
+{
+  "name": "react-playgroud",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:3005",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "bootstrap": "^4.0.0-beta.3",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "firebase": "^4.8.2",
+    "history": "^4.7.2",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
+    "lodash": "^4.17.4",
+    "morgan": "^1.9.0",
+    "prettier": "^1.10.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-helmet": "^5.2.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "react-scripts": "1.1.0",
+    "reactstrap": "^5.0.0-alpha.4",
+    "redux": "^3.7.2",
+    "redux-form": "^7.2.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^2.4.0",
+    "toastr": "^2.1.4"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "scripts": {
+    "analyze": "source-map-explorer build/static/js/main.*",
+    "precommit": "lint-staged",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy:gh": "npm run predeploy & gh-pages -d build",
+    "deploy:fb": "npm run predeploy & firebase deploy"
+  },
+  "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "expect": "^22.1.0",
+    "gh-pages": "^1.1.0",
+    "nock": "^9.1.6",
+    "redux-immutable-state-invariant": "^2.1.0",
+    "source-map-explorer": "^1.5.0"
+  }
+}
