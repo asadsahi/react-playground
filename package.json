@@ -36,7 +36,6 @@
     "precommit": "lint-staged",
     "start": "react-scripts start",
     "build": "react-scripts build && cp build/index.html build/404.html",
-    "postinstall": "npm run build",
     "test": "react-scripts test --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
     "eject": "react-scripts eject",
