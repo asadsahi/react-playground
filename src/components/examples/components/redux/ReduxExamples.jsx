@@ -4,6 +4,7 @@ import { NavLinks } from '../../../shared';
 import { Conversion } from './currency-convertor';
 import { ReduxCounter } from './counter';
 import { ReduxForm } from './ReduxForm';
+import { TodoComponent } from './Todo';
 import { CourseManagement } from './course-management';
 
 export class ReduxExamples extends Component {
@@ -19,6 +20,11 @@ export class ReduxExamples extends Component {
       route: 'coursemanagement',
       description: 'Course management',
       component: CourseManagement
+    },
+    {
+      route: 'todo',
+      description: 'Todo',
+      component: TodoComponent
     }
   ];
 

@@ -11,6 +11,11 @@ import error from './components/examples/components/redux/currency-convertor/red
 import courses from './components/examples/components/redux/course-management/reducers/courseReducer';
 import authors from './components/examples/components/redux/course-management/reducers/authorReducer';
 import ajaxCallsInProgress from './components/examples/components/redux/course-management/reducers/ajaxStatusReducer';
+// Todos
+import {
+  todos,
+  visibilityFilter
+} from './components/examples/components/redux/Todo';
 
 export default combineReducers({
   form: reduxFormReducer, // mounted under "form"
@@ -20,5 +25,7 @@ export default combineReducers({
   error,
   courses,
   authors,
-  ajaxCallsInProgress
+  ajaxCallsInProgress,
+  todos,
+  visibilityFilter
 });
