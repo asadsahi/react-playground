@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import { NavLinks } from '../../../shared';
+import { NavLinks } from '../../../../components';
 import SlideShowContainer from './slideshow/SlideShowContainer';
 
 export class ReactCastsExamples extends Component {

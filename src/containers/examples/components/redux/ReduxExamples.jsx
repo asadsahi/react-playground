@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import { NavLinks } from '../../../shared';
+import { NavLinks } from '../../../../components';
 import { Conversion } from './currency-convertor';
 import { ReduxCounter } from './counter';
 import { ReduxForm } from './ReduxForm';

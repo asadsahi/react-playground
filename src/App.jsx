@@ -2,15 +2,15 @@ import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 
 import {
-  Navigation,
-  Loading,
   Home,
   Profile,
   Register,
   Dashboard,
   Examples,
   Login
-} from './components';
+} from './containers';
+
+import { Navigation, Loading } from './components';
 import { firebaseAuth } from './services';
 
 function PrivateRoute({ component: Component, authed, ...rest }) {

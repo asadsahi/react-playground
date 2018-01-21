@@ -1,8 +1,4 @@
-export * from './shared';
-export * from './examples';
-
-export * from './Dashboard.jsx';
-export * from './Home.jsx';
-export * from './Profile.jsx';
-export * from './Login.jsx';
-export * from './Register.jsx';
+export * from './FormWrapper.jsx';
+export * from './Navigation.jsx';
+export * from './Loading.jsx';
+export * from './NavLinks.jsx';

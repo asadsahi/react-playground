@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import { NavLinks } from '../shared';
+import { NavLinks } from '../../components';
 import { ReduxExamples, ReactCastsExamples } from './components';
 
 export class Examples extends Component {

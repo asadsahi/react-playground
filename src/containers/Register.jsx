@@ -1,35 +1,27 @@
 import React, { Component } from 'react';
-import { FormWrapper } from './shared';
 
-import { login, resetPassword } from '../services';
+import { FormWrapper } from '../components';
+
+import { auth } from '../services';
 
 function setErrorMsg(error) {
   return {
-    loginMessage: error
+    registerError: error.message
   };
 }
 
-class Login extends Component {
-  state = { loginMessage: null };
+class Register extends Component {
+  state = { registerError: null };
   handleSubmit = e => {
     e.preventDefault();
-    login(this.email.value, this.pw.value).catch(error => {
-      this.setState(setErrorMsg('Invalid username/password.'));
-    });
-  };
-  resetPassword = () => {
-    resetPassword(this.email.value)
-      .then(() =>
-        this.setState(
-          setErrorMsg(`Password reset email sent to ${this.email.value}.`)
-        )
-      )
-      .catch(error => this.setState(setErrorMsg(`Email address not found.`)));
+    auth(this.email.value, this.pw.value).catch(e =>
+      this.setState(setErrorMsg(e))
+    );
   };
   render() {
     return (
       <div className="card">
-        <div className="card-header">Login</div>
+        <div className="card-header">Register</div>
         <div className="card-block container">
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
@@ -49,16 +41,13 @@ class Login extends Component {
                 ref={pw => (this.pw = pw)}
               />
             </div>
-            {this.state.loginMessage && (
+            {this.state.registerError && (
               <div className="alert alert-danger">
-                {this.state.loginMessage}{' '}
-                <a href="" onClick={this.resetPassword} className="alert-link">
-                  Forgot Password?
-                </a>
+                {this.state.registerError}
               </div>
             )}
             <button type="submit" className="btn btn-primary">
-              Login
+              Register
             </button>
           </form>
         </div>
@@ -67,5 +56,6 @@ class Login extends Component {
   }
 }
 
-Login = FormWrapper(Login);
-export { Login };
+Register = FormWrapper(Register);
+
+export { Register };

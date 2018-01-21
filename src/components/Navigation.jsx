@@ -10,7 +10,7 @@ import {
   NavItem
 } from 'reactstrap';
 
-import { logout } from '../../services';
+import { logout } from '../services';
 
 export class Navigation extends Component {
   state = {

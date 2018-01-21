@@ -3,19 +3,19 @@ import { routerReducer } from 'react-router-redux';
 import { reducer as reduxFormReducer } from 'redux-form';
 
 // Counter example reducers
-import counter from './components/examples/components/redux/counter/counter';
+import counter from './containers/examples/components/redux/counter/counter';
 // Currency convertor example reducers
-import amount from './components/examples/components/redux/currency-convertor/reducers/amount';
-import error from './components/examples/components/redux/currency-convertor/reducers/error';
+import amount from './containers/examples/components/redux/currency-convertor/reducers/amount';
+import error from './containers/examples/components/redux/currency-convertor/reducers/error';
 // Course example reducers
-import courses from './components/examples/components/redux/course-management/reducers/courseReducer';
-import authors from './components/examples/components/redux/course-management/reducers/authorReducer';
-import ajaxCallsInProgress from './components/examples/components/redux/course-management/reducers/ajaxStatusReducer';
+import courses from './containers/examples/components/redux/course-management/reducers/courseReducer';
+import authors from './containers/examples/components/redux/course-management/reducers/authorReducer';
+import ajaxCallsInProgress from './containers/examples/components/redux/course-management/reducers/ajaxStatusReducer';
 // Todos
 import {
   todos,
   visibilityFilter
-} from './components/examples/components/redux/Todo';
+} from './containers/examples/components/redux/Todo';
 
 export default combineReducers({
   form: reduxFormReducer, // mounted under "form"
