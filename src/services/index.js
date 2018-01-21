@@ -1,3 +1,3 @@
 export * from './auth';
 export * from './data';
-export * from './constants';
+export * from './firebase.config';

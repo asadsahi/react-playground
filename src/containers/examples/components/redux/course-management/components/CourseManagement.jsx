@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import LoadingDots from './common/LoadingDots';
 import { Route } from 'react-router-dom';
+
+import { Loading } from '../../../../../../components';
+import { store } from '../../../../../../store';
+
 import CoursesPage from './course/CoursesPage';
 import ManageCoursePage from './course/ManageCoursePage';
 
-import store from '../../../../../../store';
 import { loadCourses } from '../actions/courseActions';
 import { loadAuthors } from '../actions/authorActions';
 class CourseManagement extends React.Component {
@@ -17,7 +19,7 @@ class CourseManagement extends React.Component {
   render() {
     return (
       <div className="container-fluid">
-        {this.props.loading && <LoadingDots interval={100} dots={20} />}
+        {this.props.loading && <Loading />}
         {this.props.children}
 
         <div>

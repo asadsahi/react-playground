@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import createHistory from 'history/createBrowserHistory';
-import rootReducer from './reducers';
+import { rootReducer } from './reducers';
 const isDev = process.env.NODE_ENV === 'development';
 let logger = createLogger({
   collapsed: true
@@ -29,4 +29,6 @@ if (isDev) {
 
 const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
 
-export default createStore(rootReducer, initialState, composedEnhancers);
+let store = createStore(rootReducer, initialState, composedEnhancers);
+
+export { store };
