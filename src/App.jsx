@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import {
   Home,
@@ -10,40 +10,8 @@ import {
   Login
 } from './containers';
 
-import { Navigation, Loading } from './components';
+import { Navigation, Loading, PrivateRoute, PublicRoute } from './components';
 import { firebaseAuth } from './services';
-
-function PrivateRoute({ component: Component, authed, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        authed === true ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{ pathname: '/login', state: { from: props.location } }}
-          />
-        )
-      }
-    />
-  );
-}
-
-function PublicRoute({ component: Component, authed, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        authed === false ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to="/dashboard" />
-        )
-      }
-    />
-  );
-}
 
 export default class App extends React.Component {
   state = {
