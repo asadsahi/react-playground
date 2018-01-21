@@ -10,32 +10,51 @@ import {
 } from './counter';
 
 let ReduxCounter = props => (
-  <div>
+  <div className="col-12">
     <p>Count: {props.count}</p>
 
-    <p>
-      <button onClick={props.increment} disabled={props.isIncrementing}>
+    <div className="btn-group">
+      <button
+        className="btn btn-sm btn-primary"
+        onClick={props.increment}
+        disabled={props.isIncrementing}
+      >
         Increment
       </button>
-      <button onClick={props.incrementAsync} disabled={props.isIncrementing}>
+      <button
+        className="btn btn-sm btn-secondary"
+        onClick={props.incrementAsync}
+        disabled={props.isIncrementing}
+      >
         Increment Async
       </button>
-    </p>
+    </div>
 
-    <p>
-      <button onClick={props.decrement} disabled={props.isDecrementing}>
+    <br />
+    <br />
+
+    <div className="btn-group">
+      <button
+        className="btn btn-sm btn-primary"
+        onClick={props.decrement}
+        disabled={props.isDecrementing}
+      >
         Decrement
       </button>
-      <button onClick={props.decrementAsync} disabled={props.isDecrementing}>
+      <button
+        className="btn btn-sm btn-secondary"
+        onClick={props.decrementAsync}
+        disabled={props.isDecrementing}
+      >
         Decrement Async
       </button>
-    </p>
+    </div>
 
-    <p>
-      <button onClick={() => props.changePage()}>
-        Go to about page via redux
+    <div>
+      <button className="btn btn-sm" onClick={() => props.changePage()}>
+        Go to examples page via redux
       </button>
-    </p>
+    </div>
   </div>
 );
 

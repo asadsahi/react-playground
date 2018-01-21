@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { NavLinks } from '../shared';
-import { ReduxExamples } from './components';
+import { ReduxExamples, ReactCastsExamples } from './components';
 
 export class Examples extends Component {
   exampleLinks = [
     {
+      route: 'reactcasts',
+      description: 'ReactCasts',
+      component: ReactCastsExamples
+    },
+    {
       route: 'reduxexamples',
-      description: 'Redux examples',
+      description: 'Redux',
       component: ReduxExamples
     }
   ];
@@ -15,10 +20,10 @@ export class Examples extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-md-2">
+        <div className="col-md-3">
           <NavLinks {...this.props} links={this.exampleLinks} />
         </div>
-        <div className="col-md-10">
+        <div className="col-md-9">
           {this.exampleLinks.map(link => (
             <Route
               key={link.route}

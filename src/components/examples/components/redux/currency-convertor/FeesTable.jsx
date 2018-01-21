@@ -12,7 +12,7 @@ class FeesTable extends React.Component {
 
     return (
       <div>
-        <table>
+        <table className="table">
           <tbody>
             <tr>
               <td>Conversion Rate</td>

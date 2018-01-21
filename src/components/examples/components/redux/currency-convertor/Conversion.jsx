@@ -114,46 +114,58 @@ class Conversion extends React.Component {
 
     return (
       <div>
-        {errorMsg}
-        <label>Convert</label>&nbsp;
-        <input
-          className="amount-field"
-          ref={input => (this.originAmountInput = input)}
-          onChange={this.handleOriginAmountChange}
-          value={this.props.originAmount}
-        />
-        <select
-          value={this.props.originCurrency}
-          onChange={this.handleOriginCurrencyChange}
-        >
-          <option value="USD">USD</option>
-          <option value="EUR">EUR</option>
-          <option value="JPY">JPY</option>
-        </select>
-        to{' '}
-        <input
-          className="amount-field"
-          onChange={this.handleDestAmountChange}
-          value={this.props.destinationAmount}
-        />&nbsp;
-        <select
-          value={this.props.destinationCurrency}
-          onChange={this.handleDestCurrencyChange}
-        >
-          <option value="USD">USD</option>
-          <option value="EUR">EUR</option>
-          <option value="JPY">JPY</option>
-        </select>
+        <div className="row">
+          <h2>Convert</h2>
+          {errorMsg}
+        </div>
+        <div className="row">
+          <div className="col-5">
+            <input
+              className="form-control"
+              ref={input => (this.originAmountInput = input)}
+              onChange={this.handleOriginAmountChange}
+              value={this.props.originAmount}
+            />
+            <select
+              className="form-control"
+              value={this.props.originCurrency}
+              onChange={this.handleOriginCurrencyChange}
+            >
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="JPY">JPY</option>
+            </select>
+          </div>
+          <div className="col-2">to </div>
+
+          <div className="col-5">
+            <input
+              className="form-control"
+              onChange={this.handleDestAmountChange}
+              value={this.props.destinationAmount}
+            />
+            <select
+              className="form-control"
+              value={this.props.destinationCurrency}
+              onChange={this.handleDestCurrencyChange}
+            >
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="JPY">JPY</option>
+            </select>
+          </div>
+        </div>
         <br />
         <br />
-        <br />
-        <FeesTable
-          originCurrency={this.props.originCurrency}
-          destinationCurrency={this.props.destinationCurrency}
-          conversionRate={this.props.conversionRate}
-          fee={this.props.feeAmount}
-          total={this.props.totalCost}
-        />
+        <div className="row">
+          <FeesTable
+            originCurrency={this.props.originCurrency}
+            destinationCurrency={this.props.destinationCurrency}
+            conversionRate={this.props.conversionRate}
+            fee={this.props.feeAmount}
+            total={this.props.totalCost}
+          />
+        </div>
       </div>
     );
   }
