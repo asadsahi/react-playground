@@ -9,6 +9,11 @@ import { users } from './users.reducer';
 import { alert } from './alert.reducer';
 
 // Examples reducers
+// Shopping cart reducer
+import {
+  cart,
+  products
+} from '../containers/examples/components/redux/shopping-cart/reducers';
 // Counter example reducers
 import counter from '../containers/examples/components/redux/counter/counter';
 // Currency convertor example reducers
@@ -39,7 +44,9 @@ const rootReducer = combineReducers({
   authors,
   ajaxCallsInProgress,
   todos,
-  visibilityFilter
+  visibilityFilter,
+  cart,
+  products
 });
 
 export { rootReducer };

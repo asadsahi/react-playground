@@ -6,6 +6,7 @@ import { ReduxCounter } from './counter';
 import { ReduxForm } from './ReduxForm';
 import { TodoComponent } from './Todo';
 import { CourseManagement } from './course-management';
+import { ShoppingCart } from './shopping-cart';
 
 export class ReduxExamples extends Component {
   reduxLinks = [
@@ -25,6 +26,11 @@ export class ReduxExamples extends Component {
       route: 'todo',
       description: 'Todo',
       component: TodoComponent
+    },
+    {
+      route: 'shoppingcart',
+      description: 'Shopping Cart',
+      component: ShoppingCart
     }
   ];
 

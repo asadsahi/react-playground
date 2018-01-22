@@ -1,5 +1,4 @@
 const required = (value, field, form) => {
-  console.log(form);
   return value ? undefined : 'Field is required';
 };
 
