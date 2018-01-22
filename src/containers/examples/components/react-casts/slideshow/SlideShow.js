@@ -1,5 +1,5 @@
 import React, { Component, Children } from 'react';
-import Transition from 'react-transition-group/Transition';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import './SlideShow.css';
 
 class SlideShow extends Component {
@@ -11,7 +11,7 @@ class SlideShow extends Component {
   componentDidMount() {
     const { children } = this.props;
     this.setState({ total: Children.count(children) });
-    this.interval = setInterval(this.showNext, 3000);
+    this.interval = setInterval(this.showNext, 2000);
   }
 
   componentWillUnmount() {
@@ -33,9 +33,11 @@ class SlideShow extends Component {
       <div className="slideshow">
         <div>{bullets}</div>
         {/* https://reactcommunity.org/react-transition-group/ */}
-        <Transition className="group" timeout={800}>
-          {Children.toArray(children)[this.state.current]}
-        </Transition>
+        <TransitionGroup>
+          <CSSTransition className="group" timeout={300}>
+            {Children.toArray(children)[this.state.current]}
+          </CSSTransition>
+        </TransitionGroup>
       </div>
     );
   }
