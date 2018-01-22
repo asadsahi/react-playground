@@ -44,7 +44,12 @@ const renderField = ({
 let ReduxForm = props => {
   const { pristine, reset, submitting } = props;
   return (
-    <form onSubmit={values => console.log(values)}>
+    <form
+      onSubmit={values => {
+        debugger;
+        return console.log(values);
+      }}
+    >
       <Field
         name="username"
         type="text"

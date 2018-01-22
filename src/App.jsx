@@ -46,7 +46,7 @@ export default class App extends React.Component {
       <Loading />
     ) : (
       <div>
-        <Navigation authed={this.state.authed} />
+        <Navigation authed={this.state.authed} user={this.state.user} />
 
         <div className="container">
           <Switch>

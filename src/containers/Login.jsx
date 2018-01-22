@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { FormWrapper } from '../components';
-
+import { FormWrapper, TextInput, validations } from '../components';
+import { reduxForm, Field } from 'redux-form';
 import { login, resetPassword } from '../services';
 
 function setErrorMsg(error) {
@@ -11,9 +11,8 @@ function setErrorMsg(error) {
 
 class Login extends Component {
   state = { loginMessage: null };
-  handleSubmit = e => {
-    e.preventDefault();
-    login(this.email.value, this.pw.value).catch(error => {
+  handleSubmit = values => {
+    login(values.email, values.password).catch(error => {
       this.setState(setErrorMsg('Invalid username/password.'));
     });
   };
@@ -28,44 +27,40 @@ class Login extends Component {
   };
   render() {
     return (
-      <div className="card">
-        <div className="card-header">Login</div>
-        <div className="card-block container">
-          <form onSubmit={this.handleSubmit}>
-            <div className="form-group">
-              <label>Email</label>
-              <input
-                className="form-control"
-                ref={email => (this.email = email)}
-                placeholder="Email"
-              />
-            </div>
-            <div className="form-group">
-              <label>Password</label>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Password"
-                ref={pw => (this.pw = pw)}
-              />
-            </div>
-            {this.state.loginMessage && (
-              <div className="alert alert-danger">
-                {this.state.loginMessage}{' '}
-                <a href="" onClick={this.resetPassword} className="alert-link">
-                  Forgot Password?
-                </a>
-              </div>
-            )}
-            <button type="submit" className="btn btn-primary">
-              Login
-            </button>
-          </form>
-        </div>
-      </div>
+      <form onSubmit={this.props.handleSubmit(this.handleSubmit)} noValidate>
+        {this.state.loginMessage && (
+          <div className="alert alert-danger">
+            {this.state.loginMessage}{' '}
+            <a href="" onClick={this.resetPassword} className="alert-link">
+              Forgot Password?
+            </a>
+          </div>
+        )}
+        <Field
+          name="email"
+          type="email"
+          component={TextInput}
+          label="Email"
+          validate={[validations.required, validations.email]}
+        />
+        <Field
+          name="password"
+          type="password"
+          component={TextInput}
+          label="Password"
+          validate={[validations.required]}
+        />
+
+        <button type="submit" className="btn btn-primary">
+          Login
+        </button>
+      </form>
     );
   }
 }
 
-Login = FormWrapper(Login);
+Login = reduxForm({
+  form: 'loginForm'
+})(FormWrapper(Login, 'Login'));
+
 export { Login };

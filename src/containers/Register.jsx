@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import { FormWrapper } from '../components';
-
-import { auth } from '../services';
+import { FormWrapper, TextInput, validations } from '../components';
+import { reduxForm, Field } from 'redux-form';
+import { register } from '../services';
 
 function setErrorMsg(error) {
   return {
@@ -12,50 +12,42 @@ function setErrorMsg(error) {
 
 class Register extends Component {
   state = { registerError: null };
-  handleSubmit = e => {
-    e.preventDefault();
-    auth(this.email.value, this.pw.value).catch(e =>
+  handleSubmit = values => {
+    register(values.email, values.password).catch(e =>
       this.setState(setErrorMsg(e))
     );
   };
   render() {
     return (
-      <div className="card">
-        <div className="card-header">Register</div>
-        <div className="card-block container">
-          <form onSubmit={this.handleSubmit}>
-            <div className="form-group">
-              <label>Email</label>
-              <input
-                className="form-control"
-                ref={email => (this.email = email)}
-                placeholder="Email"
-              />
-            </div>
-            <div className="form-group">
-              <label>Password</label>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Password"
-                ref={pw => (this.pw = pw)}
-              />
-            </div>
-            {this.state.registerError && (
-              <div className="alert alert-danger">
-                {this.state.registerError}
-              </div>
-            )}
-            <button type="submit" className="btn btn-primary">
-              Register
-            </button>
-          </form>
-        </div>
-      </div>
+      <form onSubmit={this.props.handleSubmit(this.handleSubmit)} noValidate>
+        {this.state.registerError && (
+          <div className="alert alert-danger">{this.state.registerError}</div>
+        )}
+        <Field
+          name="email"
+          type="email"
+          component={TextInput}
+          label="Email"
+          validate={[validations.required, validations.email]}
+        />
+        <Field
+          name="password"
+          type="password"
+          component={TextInput}
+          label="Password"
+          validate={[validations.required]}
+        />
+
+        <button type="submit" className="btn btn-primary">
+          Register
+        </button>
+      </form>
     );
   }
 }
 
-Register = FormWrapper(Register);
+Register = reduxForm({
+  form: 'registerForm'
+})(FormWrapper(Register, 'Register'));
 
 export { Register };

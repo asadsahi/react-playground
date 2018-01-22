@@ -55,7 +55,7 @@ export class Navigation extends Component {
                         to="/profile"
                         activeClassName="active"
                       >
-                        Profile
+                        {this.props.user.email}
                       </NavLink>
                     </NavItem>,
                     <NavItem key="logout">

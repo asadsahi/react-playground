@@ -1,7 +1,33 @@
 import React, { Component } from 'react';
+import { FormWrapper, TextInput, validations } from '../components';
+import { reduxForm, Field } from 'redux-form';
+import { profileUpdate } from '../services';
 
-export class Profile extends Component {
+class Profile extends Component {
+  handleSubmit = values => {
+    profileUpdate(values);
+  };
+
   render() {
-    return <h1>Profile</h1>;
+    return (
+      <form onSubmit={this.props.handleSubmit(this.handleSubmit)} noValidate>
+        <Field
+          name="email"
+          type="email"
+          component={TextInput}
+          label="Email"
+          validate={[validations.required, validations.email]}
+        />
+        <button type="submit" className="btn btn-primary">
+          Update
+        </button>
+      </form>
+    );
   }
 }
+
+Profile = reduxForm({
+  form: 'profileForm'
+})(FormWrapper(Profile, 'Profile'));
+
+export { Profile };

@@ -1,17 +1,21 @@
 import { ref, firebaseAuth } from './firebase.config';
 
-export function auth(email, pw) {
+export function login(email, pw) {
+  return firebaseAuth().signInWithEmailAndPassword(email, pw);
+}
+
+export function register(email, pw) {
   return firebaseAuth()
     .createUserWithEmailAndPassword(email, pw)
     .then(saveUser);
 }
 
-export function logout() {
-  return firebaseAuth().signOut();
+export function profileUpdate(profile) {
+  console.log(profile);
 }
 
-export function login(email, pw) {
-  return firebaseAuth().signInWithEmailAndPassword(email, pw);
+export function logout() {
+  return firebaseAuth().signOut();
 }
 
 export function resetPassword(email) {
