@@ -1,6 +1,6 @@
 import expect from 'expect';
 import React from 'react';
-import ReactTestUtils from 'react-dom/test-utils'; // ES6
+import ShallowRenderer from 'react-test-renderer/shallow';
 import CourseForm from './CourseForm';
 
 function setup(saving) {
@@ -11,7 +11,7 @@ function setup(saving) {
     onSave: () => {},
     onChange: () => {}
   };
-  let renderer = ReactTestUtils.createRenderer();
+  let renderer = new ShallowRenderer();
   renderer.render(<CourseForm {...props} />);
   let output = renderer.getRenderOutput();
 

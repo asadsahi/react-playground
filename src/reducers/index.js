@@ -3,10 +3,6 @@ import { routerReducer } from 'react-router-redux';
 import { reducer as reduxFormReducer } from 'redux-form';
 
 // App Reducers
-import { authentication } from './authentication.reducer';
-import { registration } from './registration.reducer';
-import { users } from './users.reducer';
-import { alert } from './alert.reducer';
 
 // Examples reducers
 // Shopping cart reducer
@@ -30,10 +26,6 @@ import {
 } from '../containers/examples/components/redux/Todo';
 
 const rootReducer = combineReducers({
-  authentication,
-  registration,
-  users,
-  alert,
   //---------------
   form: reduxFormReducer, // mounted under "form"
   router: routerReducer,
