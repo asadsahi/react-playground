@@ -3,10 +3,8 @@ import React from 'react';
 export const Home = () => (
   <div>
     <div className="jumbotron">
-      <div className="container">
-        <h1>React firebase playground</h1> A Single Page Application built using
-        React and firebase
-      </div>
+      <h1>React firebase playground</h1> A Single Page Application built using
+      React and firebase
     </div>
     <div className="row">
       <div className="col-md-6">
