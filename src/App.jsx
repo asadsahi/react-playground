@@ -1,9 +1,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import Async from 'react-code-splitting';
 
-import { Navigation, Loading, PrivateRoute, PublicRoute } from './components';
+import {
+  Navigation,
+  Loading,
+  PrivateRoute,
+  PublicRoute,
+  Async
+} from './components';
 import { firebaseAuth } from './services';
 
 import { Home, Examples } from './containers';

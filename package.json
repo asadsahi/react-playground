@@ -12,7 +12,6 @@
     "history": "^4.7.2",
     "lodash": "^4.17.4",
     "react": "^16.2.0",
-    "react-code-splitting": "^1.2.1",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.6",
@@ -23,9 +22,7 @@
     "reactstrap": "^5.0.0-alpha.4",
     "redux": "^3.7.2",
     "redux-form": "^7.2.1",
-    "redux-thunk": "^2.2.0",
-    "styled-components": "^2.4.0",
-    "toastr": "^2.1.4"
+    "redux-thunk": "^2.2.0"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [

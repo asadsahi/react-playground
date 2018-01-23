@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import 'toastr/build/toastr.min.css';
 import './index.css';
 
 import React from 'react';
