@@ -8,9 +8,15 @@ import { firebaseAuth } from './services';
 
 import { Home, Examples } from './containers';
 
-const Login = props => <Async load={import('./containers/Login')} />;
-const Register = props => <Async load={import('./containers/Register')} />;
-const Profile = props => <Async load={import('./containers/Profile')} />;
+const Login = props => (
+  <Async load={import('./containers/Login')} componentProps={props} />
+);
+const Register = props => (
+  <Async load={import('./containers/Register')} componentProps={props} />
+);
+const Profile = props => (
+  <Async load={import('./containers/Profile')} componentProps={props} />
+);
 
 export default class App extends React.Component {
   state = {

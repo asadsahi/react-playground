@@ -65,9 +65,7 @@ class Login extends Component {
 }
 
 Login = reduxForm({
-  form: 'loginForm',
-  destroyOnUnmount: true, // <------ preserve form data
-  forceUnregisterOnUnmount: true // <------ unregister fields on unmount
+  form: 'loginForm'
 })(FormWrapper(Login, 'Login'));
 
 export default Login;
