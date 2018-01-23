@@ -29,6 +29,6 @@ if (isDev) {
 
 const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
 
-let store = createStore(rootReducer, initialState, composedEnhancers);
+let store = createStore(rootReducer(), initialState, composedEnhancers);
 
 export { store };

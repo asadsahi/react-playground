@@ -30,4 +30,4 @@ Profile = reduxForm({
   form: 'profileForm'
 })(FormWrapper(Profile, 'Profile'));
 
-export { Profile };
+export default Profile;

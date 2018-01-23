@@ -1,18 +1,16 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-
-import {
-  Home,
-  Profile,
-  Register,
-  Dashboard,
-  Examples,
-  Login
-} from './containers';
+import Async from 'react-code-splitting';
 
 import { Navigation, Loading, PrivateRoute, PublicRoute } from './components';
 import { firebaseAuth } from './services';
+
+import { Home, Examples } from './containers';
+
+const Login = props => <Async load={import('./containers/Login')} />;
+const Register = props => <Async load={import('./containers/Register')} />;
+const Profile = props => <Async load={import('./containers/Profile')} />;
 
 export default class App extends React.Component {
   state = {
@@ -71,11 +69,6 @@ export default class App extends React.Component {
                   authed={this.state.authed}
                   path="/register"
                   component={Register}
-                />
-                <PrivateRoute
-                  authed={this.state.authed}
-                  path="/dashboard"
-                  component={Dashboard}
                 />
                 <PrivateRoute
                   authed={this.state.authed}

@@ -47,7 +47,9 @@ class Register extends Component {
 }
 
 Register = reduxForm({
-  form: 'registerForm'
+  form: 'registerForm',
+  destroyOnUnmount: true, // <------ preserve form data
+  forceUnregisterOnUnmount: true // <------ unregister fields on unmount
 })(FormWrapper(Register, 'Register'));
 
-export { Register };
+export default Register;

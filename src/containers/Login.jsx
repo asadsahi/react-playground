@@ -11,7 +11,7 @@ function setErrorMsg(error) {
 
 class Login extends Component {
   state = { loginMessage: null };
-  handleSubmit = values => {
+  submitHandler = values => {
     login(values.email, values.password).catch(error => {
       this.setState(setErrorMsg('Invalid username/password.'));
     });
@@ -26,8 +26,13 @@ class Login extends Component {
       .catch(error => this.setState(setErrorMsg(`Email address not found.`)));
   };
   render() {
+    const { handleSubmit } = this.props;
     return (
-      <form onSubmit={this.props.handleSubmit(this.handleSubmit)} noValidate>
+      <form
+        key={'loginForm'}
+        onSubmit={handleSubmit(this.submitHandler)}
+        noValidate
+      >
         {this.state.loginMessage && (
           <div className="alert alert-danger">
             {this.state.loginMessage}{' '}
@@ -60,7 +65,9 @@ class Login extends Component {
 }
 
 Login = reduxForm({
-  form: 'loginForm'
+  form: 'loginForm',
+  destroyOnUnmount: true, // <------ preserve form data
+  forceUnregisterOnUnmount: true // <------ unregister fields on unmount
 })(FormWrapper(Login, 'Login'));
 
-export { Login };
+export default Login;

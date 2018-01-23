@@ -7,10 +7,16 @@ import { ReduxForm } from './ReduxForm';
 import { TodoComponent } from './Todo';
 import { CourseManagement } from './course-management';
 import { ShoppingCart } from './shopping-cart';
+import { WizardFormPage } from './wizard-form';
 
 export class ReduxExamples extends Component {
   reduxLinks = [
     { route: 'form', description: 'Forms', component: ReduxForm },
+    {
+      route: 'wizardform',
+      description: 'Wizard Form',
+      component: WizardFormPage
+    },
     { route: 'counter', description: 'Counter', component: ReduxCounter },
     {
       route: 'currencyconvertor',

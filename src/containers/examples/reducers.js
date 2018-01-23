@@ -12,7 +12,7 @@ import { todos, visibilityFilter } from './components/redux/Todo';
 // Shopping cart reducer
 import { cart, products } from './components/redux/shopping-cart/reducers';
 
-export {
+const exampleReducers = {
   counter,
   amount,
   error,
@@ -24,3 +24,5 @@ export {
   cart,
   products
 };
+
+export default exampleReducers;

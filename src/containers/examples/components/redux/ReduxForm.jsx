@@ -46,7 +46,6 @@ let ReduxForm = props => {
   return (
     <form
       onSubmit={values => {
-        debugger;
         return console.log(values);
       }}
     >
