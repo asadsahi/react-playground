@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 
 import { Loading } from '../../../../../../components';
-import { store } from '../../../../../../store';
+import store from '../../../../../../store';
 
 import CoursesPage from './course/CoursesPage';
 import ManageCoursePage from './course/ManageCoursePage';
