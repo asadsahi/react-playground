@@ -5,7 +5,7 @@ const PublicRoute = ({ component: Component, authed, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      authed === false ? <Component {...props} /> : <Redirect to="/home" />
+      authed === false ? <Component {...props} /> : <Redirect to="/" />
     }
   />
 );

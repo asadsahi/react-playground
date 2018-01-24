@@ -18,8 +18,3 @@
 .fade-exit-active {
   opacity: 0;
 }
-
-/* Form controls gap */
-.form-wrapper form {
-  margin: 10px 0;
-}

@@ -15,13 +15,20 @@ export class Navigation extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-sm navbar-light top-nav">
         <NavLink className="navbar-brand" to="/">
-          React playground
+          <img
+            src="/icons/icon-72x72.png"
+            alt="icon"
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+          />
+          &nbsp;React playground
         </NavLink>
         <button
           onClick={this.toggle}
-          className="navbar-toggler"
+          className={'navbar-toggler ' + (this.state.isOpen ? '' : 'collapsed')}
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
@@ -32,10 +39,20 @@ export class Navigation extends Component {
           <span className="navbar-toggler-icon" />
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div
+          className={
+            'collapse navbar-collapse ' + (this.state.isOpen ? 'show' : '')
+          }
+          id="navbarSupportedContent"
+        >
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <NavLink className="nav-link" to="/" activeClassName="active">
+              <NavLink
+                exact
+                className="nav-link"
+                to="/"
+                activeClassName="active"
+              >
                 Home
               </NavLink>
             </li>
@@ -48,6 +65,8 @@ export class Navigation extends Component {
                 Examples
               </NavLink>
             </li>
+          </ul>
+          <ul className="navbar-nav ml-auto">
             {this.props.authed
               ? [
                   <li className="nav-item" key="profile">
@@ -62,7 +81,7 @@ export class Navigation extends Component {
                   <li className="nav-item" key="logout">
                     <a
                       className="nav-link"
-                      href="#"
+                      href=""
                       onClick={() => {
                         logout();
                       }}
