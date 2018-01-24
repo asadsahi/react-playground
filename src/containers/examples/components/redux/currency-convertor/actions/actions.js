@@ -1,4 +1,3 @@
-import axios from 'axios';
 import debounce from 'lodash/debounce';
 
 import { ActionTypes as types } from '../constants';
@@ -41,10 +40,7 @@ function _makeConversionAjaxCall(payload, dispatch) {
   dispatch({ type: types.REQUEST_CONVERSION_RATE, data: payload });
 
   // ajax call for destination amount
-  axios
-    .get('/api/conversion', {
-      params: payload
-    })
+  fetch('/api/conversion?' + mapQueryParam(payload))
     .then(resp => {
       dispatch({
         type: types.RECEIVED_CONVERSION_RATE_SUCCESS,
@@ -68,10 +64,7 @@ function _makeConversionAndFeesAjaxCalls(payload, dispatch) {
   dispatch({ type: types.REQUEST_CONVERSION_RATE, data: payload });
 
   // ajax call for destination amount
-  axios
-    .get('/api/conversion', {
-      params: payload
-    })
+  fetch('/api/conversion?' + mapQueryParam(payload))
     .then(resp => {
       dispatch({
         type: types.RECEIVED_CONVERSION_RATE_SUCCESS,
@@ -103,10 +96,7 @@ function _makeFeeAjaxCall(payload, dispatch) {
   dispatch({ type: types.REQUEST_FEES, data: payload });
 
   // ajax call for destination amount
-  axios
-    .get('/api/fees', {
-      params: payload
-    })
+  fetch('/api/fees?' + mapQueryParam(payload))
     .then(resp => {
       dispatch({ type: types.RECEIVED_FEES_SUCCESS, data: resp.data });
     })
@@ -134,4 +124,13 @@ function getErrorMsg(resp) {
   }
 
   return msg;
+}
+
+function mapQueryParam(paramsObj) {
+  var esc = encodeURIComponent;
+  var query = Object.keys(paramsObj)
+    .map(k => esc(k) + '=' + esc(paramsObj[k]))
+    .join('&');
+
+  return query;
 }
