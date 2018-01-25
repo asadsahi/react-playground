@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-const PublicRoute = ({ component: Component, authed, ...rest }) => (
+const PublicRoute = ({ Component, authed, ...rest }) => (
   <Route
     {...rest}
     render={props =>
@@ -10,4 +10,4 @@ const PublicRoute = ({ component: Component, authed, ...rest }) => (
   />
 );
 
-export { PublicRoute };
+export default PublicRoute;
