@@ -7,7 +7,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { PrivateRoute, PublicRoute, Navigation, Loading } from '../components';
 import { Home, Examples } from './';
 import { firebaseAuth } from '../services';
-// import { loadAppData } from '../actions';
+import { loadAppData } from '../actions';
 
 const Login = Loadable({
   loader: () => import('./Login'),
@@ -52,6 +52,10 @@ export default class App extends React.Component {
 
   componentWillUnmount() {
     this.removeListener();
+  }
+
+  componentWillReceiveProps() {
+    console.log(this.props.data);
   }
 
   render() {
@@ -109,7 +113,7 @@ export default class App extends React.Component {
 // function mapDispatchToProps(dispatch) {
 //   return {
 //     loadAppData() {
-//       // dispatch(loadAppData())
+//       dispatch(loadAppData())
 //     }
 //   }
 // }

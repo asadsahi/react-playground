@@ -1,15 +1,17 @@
-import { beginApiCall } from '../CONSTANTS';
+import { ActionTypes as types } from '../constants';
 
 export function loadAppData() {
-  return function(dispatch) {
-    dispatch(beginApiCall());
-    return fetch('api/applicationdata')
+  return dispatch => {
+    dispatch({ type: types.BEGIN_API_CALL });
+    dispatch({ type: types.LOAD_APP_DATA_START });
+
+    fetch('api/applicationdata')
       .then(res => res.json())
       .then(appData => {
-        dispatch(loadAppDataSuccess(appData));
+        dispatch({ type: types.LOAD_APP_DATA_SUCCESS, data: appData });
       })
       .catch(error => {
-        throw error;
+        dispatch({ type: types.API_CALL_ERROR, data: error });
       });
   };
 }

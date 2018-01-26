@@ -19,13 +19,15 @@
     ]
   },
   "scripts": {
+    "start": "npm run start:dev",
     "start:dev": "cross-env NODE_ENV=development concurrently nodemon \"react-scripts start\"",
     "start:prod": "cross-env NODE_ENV=production node server/index.js",
     "build": "react-scripts build && cpr build/index.html build/404.html",
     "prebuild": "rimraf babel-src build",
-    "db": "sequelize db:migrate & sequelize db:seed:all",
     "test": "react-scripts test --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
+    "db": "sequelize db:migrate & sequelize db:seed:all",
+    "postinstall": "npm run db",
     "precommit": "lint-staged",
     "analyze": "source-map-explorer build/static/js/main.*",
     "eject": "react-scripts eject"
