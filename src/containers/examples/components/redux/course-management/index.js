@@ -8,4 +8,4 @@
 //   <Router history={browserHistory} routes={routes} />
 // );
 
-export * from './components/CourseManagement.jsx';
+export * from './components/CourseManagement';

@@ -3,8 +3,8 @@ import store from '../../../../../store';
 
 import { getAllProducts } from './actions';
 
-import ProductsContainer from './containers/ProductsContainer.jsx';
-import CartContainer from './containers/CartContainer.jsx';
+import ProductsContainer from './containers/ProductsContainer';
+import CartContainer from './containers/CartContainer';
 
 store.dispatch(getAllProducts());
 

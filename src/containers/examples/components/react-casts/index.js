@@ -1,1 +1,1 @@
-export * from './ReactCastsExamples.jsx';
+export * from './ReactCastsExamples';

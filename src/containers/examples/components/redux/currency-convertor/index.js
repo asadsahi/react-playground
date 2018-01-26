@@ -1,1 +1,1 @@
-export * from './Conversion.jsx';
+export * from './Conversion';

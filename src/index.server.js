@@ -1,15 +1,20 @@
 import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { Provider } from 'react-redux';
-import { StaticRouter } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
+import createHistory from 'history/createMemoryHistory';
 import App from './containers/App';
 
 export function render(req, store, context) {
   return renderToString(
     <Provider store={store}>
-      <StaticRouter location={req.url} context={context}>
+      <ConnectedRouter
+        history={createHistory()}
+        location={req.url}
+        context={context}
+      >
         <App />
-      </StaticRouter>
+      </ConnectedRouter>
     </Provider>
   );
 }

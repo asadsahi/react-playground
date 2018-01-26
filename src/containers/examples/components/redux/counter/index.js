@@ -1,1 +1,1 @@
-export * from './ReduxCounter.jsx';
+export * from './ReduxCounter';

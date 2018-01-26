@@ -1,8 +1,8 @@
 export * from './form';
 
-export * from './FormWrapper.jsx';
-export * from './Navigation.jsx';
-export * from './Loading.jsx';
-export * from './NavLinks.jsx';
-export * from './PrivateRoute.jsx';
-export * from './Async.jsx';
+export * from './FormWrapper';
+export * from './Navigation';
+export * from './Loading';
+export * from './NavLinks';
+export * from './PrivateRoute';
+export * from './Async';

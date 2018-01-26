@@ -13,6 +13,9 @@
     "presets": [
       "env",
       "react-app"
+    ],
+    "plugins": [
+      "dynamic-import-node"
     ]
   },
   "scripts": {

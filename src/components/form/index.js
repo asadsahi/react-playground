@@ -1,3 +1,3 @@
-export * from './TextInput.jsx';
+export * from './TextInput';
 
 export * from './validations';
