@@ -41,10 +41,11 @@ function _makeConversionAjaxCall(payload, dispatch) {
 
   // ajax call for destination amount
   fetch('/api/conversion?' + mapQueryParam(payload))
-    .then(resp => {
+    .then(res => res.json())
+    .then(data => {
       dispatch({
         type: types.RECEIVED_CONVERSION_RATE_SUCCESS,
-        data: resp.data
+        data
       });
     })
     .catch(err => {
@@ -65,14 +66,15 @@ function _makeConversionAndFeesAjaxCalls(payload, dispatch) {
 
   // ajax call for destination amount
   fetch('/api/conversion?' + mapQueryParam(payload))
-    .then(resp => {
+    .then(res => res.json())
+    .then(data => {
       dispatch({
         type: types.RECEIVED_CONVERSION_RATE_SUCCESS,
-        data: resp.data
+        data
       });
 
       var feePayload = Object.assign({}, payload, {
-        originAmount: resp.data.originAmount
+        originAmount: data.data.originAmount
       });
       dispatch(fetchFees(feePayload));
     })
@@ -97,8 +99,9 @@ function _makeFeeAjaxCall(payload, dispatch) {
 
   // ajax call for destination amount
   fetch('/api/fees?' + mapQueryParam(payload))
-    .then(resp => {
-      dispatch({ type: types.RECEIVED_FEES_SUCCESS, data: resp.data });
+    .then(res => res.json())
+    .then(data => {
+      dispatch({ type: types.RECEIVED_FEES_SUCCESS, data });
     })
     .catch(resp => {
       var msg = getErrorMsg(resp);

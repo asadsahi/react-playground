@@ -10,4 +10,4 @@ const PublicRoute = ({ component: Component, authed, ...rest }) => (
   />
 );
 
-export default PublicRoute;
+export { PublicRoute };

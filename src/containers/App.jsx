@@ -1,15 +1,13 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Loadable from 'react-loadable';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-import { Navigation, Loading } from '../components';
-
-import PublicRoute from '../components/PublicRoute';
-import PrivateRoute from '../components/PrivateRoute';
-import { firebaseAuth } from '../services';
-
+import { PrivateRoute, PublicRoute, Navigation, Loading } from '../components';
 import { Home, Examples } from './';
+import { firebaseAuth } from '../services';
+// import { loadAppData } from '../actions';
 
 const Login = Loadable({
   loader: () => import('./Login'),
@@ -26,16 +24,6 @@ const Profile = Loadable({
   loading: () => <Loading />
 });
 
-// const Login = props => (
-//   <Async load={import('./Login')} componentProps={props} />
-// );
-// const Register = props => (
-//   <Async load={import('./Register')} componentProps={props} />
-// );
-// const Profile = props => (
-//   <Async load={import('./Profile')} componentProps={props} />
-// );
-
 export default class App extends React.Component {
   state = {
     authed: false,
@@ -44,6 +32,8 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
+    // this.props.loadAppData();
+
     this.removeListener = firebaseAuth().onAuthStateChanged(user => {
       if (user) {
         this.setState({
@@ -108,3 +98,20 @@ export default class App extends React.Component {
     );
   }
 }
+
+// function mapStateToProps(state) {
+//   const { data } = state
+//   return {
+//     data
+//   }
+// }
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     loadAppData() {
+//       // dispatch(loadAppData())
+//     }
+//   }
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App);

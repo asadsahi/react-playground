@@ -3,5 +3,5 @@
         "server"
     ],
     "ext": "hbs js json",
-    "exec": "node ./server/index.js"
+    "exec": "node --inspect ./server/index.js"
 }

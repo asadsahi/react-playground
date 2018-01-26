@@ -5,4 +5,4 @@ export * from './Navigation';
 export * from './Loading';
 export * from './NavLinks';
 export * from './PrivateRoute';
-export * from './Async';
+export * from './PublicRoute';

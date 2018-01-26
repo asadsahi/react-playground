@@ -25,6 +25,7 @@ class Login extends Component {
       )
       .catch(error => this.setState(setErrorMsg(`Email address not found.`)));
   };
+
   render() {
     const { handleSubmit } = this.props;
     return (
