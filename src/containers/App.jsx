@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-import { Navigation, Loading, Async } from '../components';
+import { Navigation, Loading } from '../components';
 
 import PublicRoute from '../components/PublicRoute';
 import PrivateRoute from '../components/PrivateRoute';
@@ -11,20 +11,30 @@ import { firebaseAuth } from '../services';
 
 import { Home, Examples } from './';
 
-// const Login = Loadable({
-//   loader: () => import('./Login'),
-//   loading: <Loading />
-// });
+const Login = Loadable({
+  loader: () => import('./Login'),
+  loading: () => <Loading />
+});
 
-const Login = props => (
-  <Async load={import('./Login')} componentProps={props} />
-);
-const Register = props => (
-  <Async load={import('./Register')} componentProps={props} />
-);
-const Profile = props => (
-  <Async load={import('./Profile')} componentProps={props} />
-);
+const Register = Loadable({
+  loader: () => import('./Register'),
+  loading: () => <Loading />
+});
+
+const Profile = Loadable({
+  loader: () => import('./Profile'),
+  loading: () => <Loading />
+});
+
+// const Login = props => (
+//   <Async load={import('./Login')} componentProps={props} />
+// );
+// const Register = props => (
+//   <Async load={import('./Register')} componentProps={props} />
+// );
+// const Profile = props => (
+//   <Async load={import('./Profile')} componentProps={props} />
+// );
 
 export default class App extends React.Component {
   state = {
