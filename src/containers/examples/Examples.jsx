@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { NavLinks } from '../../components';
-import { ReduxExamples, ReactCastsExamples } from './components';
+import {
+  ReduxExamples,
+  ReactCastsExamples,
+  EggheadExamples
+} from './components';
 
 export class Examples extends Component {
   exampleLinks = [
@@ -14,6 +18,11 @@ export class Examples extends Component {
       route: 'reduxexamples',
       description: 'Redux',
       component: ReduxExamples
+    },
+    {
+      route: 'eggheadexamples',
+      description: 'Egghead examples',
+      component: EggheadExamples
     }
   ];
 
