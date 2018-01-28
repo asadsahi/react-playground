@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import Loadable from 'react-loadable';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -24,7 +25,7 @@ const Profile = Loadable({
   loading: () => <Loading />
 });
 
-export default class App extends React.Component {
+class App extends React.Component {
   state = {
     authed: false,
     loading: true,
@@ -32,7 +33,7 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
-    // this.props.loadAppData();
+    this.props.loadAppData();
 
     this.removeListener = firebaseAuth().onAuthStateChanged(user => {
       if (user) {
@@ -54,15 +55,10 @@ export default class App extends React.Component {
     this.removeListener();
   }
 
-  componentWillReceiveProps() {
-    console.log(this.props.data);
-  }
-
   render() {
     const timeout = { enter: 300, exit: 200 };
     const currentKey = window.location.pathname.split('/')[1] || '/';
-
-    return this.state.loading === true ? (
+    return this.state.loading === true || !this.props.appData ? (
       <Loading />
     ) : (
       <div>
@@ -103,19 +99,19 @@ export default class App extends React.Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   const { data } = state
-//   return {
-//     data
-//   }
-// }
+function mapStateToProps(state) {
+  const { appData } = state;
+  return {
+    appData
+  };
+}
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     loadAppData() {
-//       dispatch(loadAppData())
-//     }
-//   }
-// }
+function mapDispatchToProps(dispatch) {
+  return {
+    loadAppData() {
+      dispatch(loadAppData());
+    }
+  };
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

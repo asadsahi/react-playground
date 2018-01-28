@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { logout } from '../services';
+import { Cultures } from './Cultures';
 
 export class Navigation extends Component {
   state = {
@@ -65,6 +66,8 @@ export class Navigation extends Component {
                 Examples
               </NavLink>
             </li>
+
+            <Cultures />
           </ul>
           <ul className="navbar-nav ml-auto">
             {this.props.authed

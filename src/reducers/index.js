@@ -3,7 +3,7 @@ import { routerReducer } from 'react-router-redux';
 import { reducer as reduxFormReducer } from 'redux-form';
 
 // App Reducers
-import appReducer from './app.reducer';
+import appData from './app.reducer';
 // Examples Reducers
 import { exampleReducers } from '../containers/examples/reducers';
 // This allows to add dynamically reducers from lazily loaded modules
@@ -13,7 +13,7 @@ export default function createReducer(asyncReducers) {
   return combineReducers({
     form: reduxFormReducer, // mounted under "form"
     router: routerReducer,
-    appReducer,
+    appData,
     ...exampleReducers,
     ...asyncReducers
   });

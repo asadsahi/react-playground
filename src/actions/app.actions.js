@@ -5,7 +5,7 @@ export function loadAppData() {
     dispatch({ type: types.BEGIN_API_CALL });
     dispatch({ type: types.LOAD_APP_DATA_START });
 
-    fetch('api/applicationdata')
+    fetch('/api/applicationdata')
       .then(res => res.json())
       .then(appData => {
         dispatch({ type: types.LOAD_APP_DATA_SUCCESS, data: appData });
