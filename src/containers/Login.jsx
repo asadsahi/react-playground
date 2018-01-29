@@ -1,29 +1,13 @@
 import React, { Component } from 'react';
 import { FormWrapper, TextInput, validations } from '../components';
 import { reduxForm, Field } from 'redux-form';
-import { login, resetPassword } from '../services';
-
-function setErrorMsg(error) {
-  return {
-    loginMessage: error
-  };
-}
+import { connect } from 'react-redux';
+import { loginAction } from '../actions';
 
 class Login extends Component {
   state = { loginMessage: null };
   submitHandler = values => {
-    login(values.email, values.password).catch(error => {
-      this.setState(setErrorMsg('Invalid username/password.'));
-    });
-  };
-  resetPassword = () => {
-    resetPassword(this.email.value)
-      .then(() =>
-        this.setState(
-          setErrorMsg(`Password reset email sent to ${this.email.value}.`)
-        )
-      )
-      .catch(error => this.setState(setErrorMsg(`Email address not found.`)));
+    this.props.login(values.email, values.password);
   };
 
   render() {
@@ -35,12 +19,7 @@ class Login extends Component {
         noValidate
       >
         {this.state.loginMessage && (
-          <div className="alert alert-danger">
-            {this.state.loginMessage}{' '}
-            <a href="" onClick={this.resetPassword} className="alert-link">
-              Forgot Password?
-            </a>
-          </div>
+          <div className="alert alert-danger">{this.state.loginMessage} </div>
         )}
         <Field
           name="email"
@@ -64,6 +43,16 @@ class Login extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+  login(username, email) {
+    dispatch(loginAction(username, email));
+  }
+});
+
+Login = connect(mapStateToProps, mapDispatchToProps)(Login);
 
 Login = reduxForm({
   form: 'loginForm'

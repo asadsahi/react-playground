@@ -4,6 +4,7 @@ const _ = require('lodash'),
   helmet = require('helmet'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
+  session = require('express-session'),
   cookieParser = require('cookie-parser'),
   isDev = process.env.NODE_ENV === 'development',
   express = require('express'),
@@ -20,6 +21,15 @@ app.use(cookieParser());
 app.use(bodyParser.json({ limit: '0.5mb' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
+
+const expiryDate = new Date(Date.now() + 20 * 60 * 1000); // 20 minute
+app.use(session({
+  secret: global['appConfig'].Security.SESSION_SECRET,
+  resave: false,
+  httpOnly: true,
+  saveUninitialized: true,
+  expires: expiryDate
+}));
 
 const db = require('./db/models');
 db.sequelize.sync().then(res => {

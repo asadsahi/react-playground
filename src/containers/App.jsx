@@ -7,7 +7,6 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import { PrivateRoute, PublicRoute, Navigation, Loading } from '../components';
 import { Home, Examples } from './';
-import { firebaseAuth } from '../services';
 import { loadAppData } from '../actions';
 
 const Login = Loadable({
@@ -26,29 +25,8 @@ const Profile = Loadable({
 });
 
 class App extends React.Component {
-  state = {
-    authed: false,
-    loading: true,
-    user: null
-  };
-
   componentDidMount() {
     this.props.loadAppData();
-
-    this.removeListener = firebaseAuth().onAuthStateChanged(user => {
-      if (user) {
-        this.setState({
-          authed: true,
-          loading: false,
-          user: user
-        });
-      } else {
-        this.setState({
-          authed: false,
-          loading: false
-        });
-      }
-    });
   }
 
   componentWillUnmount() {
@@ -58,11 +36,11 @@ class App extends React.Component {
   render() {
     const timeout = { enter: 300, exit: 200 };
     const currentKey = window.location.pathname.split('/')[1] || '/';
-    return this.state.loading === true || !this.props.appData ? (
+    return !this.props.appData ? (
       <Loading />
     ) : (
       <div>
-        <Navigation authed={this.state.authed} user={this.state.user} />
+        <Navigation auth={this.props.auth} />
         <TransitionGroup component="main" className="page-main">
           <CSSTransition
             key={currentKey}
@@ -75,17 +53,17 @@ class App extends React.Component {
                 <Route path="/" exact component={Home} />
                 <Route path="/examples" component={Examples} />
                 <PublicRoute
-                  authed={this.state.authed}
+                  authenticated={this.props.auth.authenticated}
                   path="/login"
                   component={Login}
                 />
                 <PublicRoute
-                  authed={this.state.authed}
+                  authenticated={this.props.auth.authenticated}
                   path="/register"
                   component={Register}
                 />
                 <PrivateRoute
-                  authed={this.state.authed}
+                  authenticated={this.props.auth.authenticated}
                   path="/profile"
                   component={Profile}
                 />
@@ -99,19 +77,18 @@ class App extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { appData } = state;
+const mapStateToProps = state => {
+  console.log(state.auth);
   return {
-    appData
+    appData: state.appData,
+    auth: state.auth
   };
-}
+};
 
-function mapDispatchToProps(dispatch) {
-  return {
-    loadAppData() {
-      dispatch(loadAppData());
-    }
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  loadAppData() {
+    dispatch(loadAppData());
+  }
+});
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

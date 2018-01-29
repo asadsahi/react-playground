@@ -4,23 +4,12 @@ import { connect } from 'react-redux';
 class Cultures extends Component {
   render() {
     const { cultures } = this.props;
+    console.log(cultures);
     return cultures.map(c => {
       return (
         <li className="nav-item" key={c.value}>
-          <form action="setlanguage" method="post" className="nav-link">
-            <input
-              id={c.value}
-              name="culture"
-              value={c.value}
-              type="image"
-              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAgFAAEACAgAOw=="
-              className={
-                'flag flag-' +
-                c.value.split('-')[1].toLowerCase() +
-                ' rounded-circle'
-              }
-              alt={c.value}
-            />
+          <form action="/api/setlanguage" method="post" className="nav-link">
+            <input id={c.value} name="culture" value={c.value} type="submit" />
           </form>
         </li>
       );

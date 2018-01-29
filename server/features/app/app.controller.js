@@ -1,8 +1,6 @@
 let DB = require('../../db/models'),
     ContentText = DB.ContentText,
-    Content = DB.Content,
-    Language = DB.Language,
-    errorHandler = require('../core/errorHandler');
+    Language = DB.Language;
 
 /**
  * For site display purpose
@@ -16,7 +14,7 @@ exports.setLanguage = async (req, res) => {
 
 exports.get = async (req, res) => {
     var languages = await Language.findAll({});
-    var language = languages.find(l => l.locale == (req.cookies['lang'] || 'en-US'));
+    var language = languages.find(l => l.locale === (req.cookies['lang'] || 'en-US'));
 
     ContentText.findAll({
         include: [{

@@ -1,17 +1,16 @@
 import { ActionTypes as types } from '../constants';
-
-export function loadAppData() {
+import { dataService } from '../services';
+export const loadAppData = () => {
   return dispatch => {
-    dispatch({ type: types.BEGIN_API_CALL });
-    dispatch({ type: types.LOAD_APP_DATA_START });
+    dispatch({ type: types.APP.LOAD_APP_DATA_START });
 
-    fetch('/api/applicationdata')
-      .then(res => res.json())
-      .then(appData => {
-        dispatch({ type: types.LOAD_APP_DATA_SUCCESS, data: appData });
+    dataService
+      .get('/api/applicationdata')
+      .then(res => {
+        dispatch({ type: types.APP.LOAD_APP_DATA_SUCCESS, data: res.data });
       })
       .catch(error => {
-        dispatch({ type: types.API_CALL_ERROR, data: error });
+        dispatch({ type: types.APP.LOAD_APP_DATA_ERROR, data: error });
       });
   };
-}
+};

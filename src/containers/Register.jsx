@@ -2,20 +2,14 @@ import React, { Component } from 'react';
 
 import { FormWrapper, TextInput, validations } from '../components';
 import { reduxForm, Field } from 'redux-form';
-import { register } from '../services';
-
-function setErrorMsg(error) {
-  return {
-    registerError: error.message
-  };
-}
 
 class Register extends Component {
   state = { registerError: null };
   handleSubmit = values => {
-    register(values.email, values.password).catch(e =>
-      this.setState(setErrorMsg(e))
-    );
+    console.log(values);
+    // register(values.email, values.password).catch(e =>
+    //   this.setState(setErrorMsg(e))
+    // );
   };
   render() {
     return (

@@ -3,17 +3,14 @@ import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import createHistory from 'history/createBrowserHistory';
-import createReducer from './reducers';
+import { rootReducer, initialState } from './reducers';
+import { history } from './constants';
 
 const isDev = process.env.NODE_ENV === 'development';
 let logger = createLogger({
   collapsed: true
 });
 
-export const history = createHistory();
-
-const initialState = {};
 const enhancers = [];
 const middleware = [thunk, routerMiddleware(history)];
 
@@ -30,10 +27,8 @@ if (isDev) {
 
 const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
 
-// let store = createStore(createReducer(), initialState, composedEnhancers);
-
 function storeSetup() {
-  const store = createStore(createReducer(), initialState, composedEnhancers);
+  const store = createStore(rootReducer(), initialState, composedEnhancers);
   store.asyncReducers = {};
   return store;
 }
@@ -41,7 +36,7 @@ const store = storeSetup();
 
 export function injectAsyncReducer(store, name, asyncReducer) {
   store.asyncReducers[name] = asyncReducer;
-  store.replaceReducer(createReducer(store.asyncReducers));
+  store.replaceReducer(rootReducer(store.asyncReducers));
 }
 
 export default store;

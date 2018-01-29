@@ -1,6 +1,4 @@
-let path = require('path'),
-    fs = require('fs'),
-    passport = require('passport'),
+let passport = require('passport'),
     nodemailer = require('nodemailer'),
     crypto = require('crypto'),
     _ = require('lodash'),
@@ -87,8 +85,8 @@ exports.oauthCallback = (strategy) => {
                 return res.redirect('/authentication/signin');
             }
             // TODO redirect to home page with user
-            let token = jwt.sign({ user: user }, appConfig.Security.JWT_SECRET);
-            return res.redirect(appConfig.Host + '?token=' + token);
+            let token = jwt.sign({ user: user }, global.appConfig.Security.JWT_SECRET);
+            return res.redirect(global.appConfig.Host + '?token=' + token);
         })(req, res, next);
     };
 };
@@ -228,7 +226,7 @@ exports.update = (req, res) => {
         username: req.body.username,
         email: req.body.email
     })
-        .then(user => res.json(_.pick(user, appConfig.whitelistedUserFields)))
+        .then(user => res.json(_.pick(user, global.appConfig.whitelistedUserFields)))
         .catch(err => res.status(400).send(errorHandler.formatMessage(err)));
 };
 
@@ -308,7 +306,7 @@ exports.me = (req, res) => {
 // ==================== AUTHORISATION ROUTES ==================
 
 // ====================== USER PASSWORD ROUTES =========================
-let smtpTransport = nodemailer.createTransport(appConfig.mailOptions);
+let smtpTransport = nodemailer.createTransport(global.appConfig.mailOptions);
 
 /**
  * Forgot for reset password (forgot POST)
@@ -346,7 +344,7 @@ exports.forgot = (req, res, next) => {
 
                         res.render('reset-password-email', {
                             name: user.displayName,
-                            appName: appConfig.appTitle,
+                            appName: global.appConfig.appTitle,
                             url: baseUrl + '/api/auth/reset/' + token
                         }, (err, emailHTML) => {
                             if (err) {
@@ -355,7 +353,7 @@ exports.forgot = (req, res, next) => {
 
                             let mailOptions = {
                                 to: user.email,
-                                from: appConfig.mailOptions.from,
+                                from: global.appConfig.mailOptions.from,
                                 subject: 'Password Reset',
                                 html: emailHTML
                             };
@@ -427,7 +425,7 @@ exports.reset = (req, res, next) => {
         }).then(user => {
             res.render('reset-password-confirm-email', {
                 name: user.displayName,
-                appName: appConfig.appTitle
+                appName: global.appConfig.appTitle
             }, (err, emailHTML) => {
                 if (err) {
                     return res.status(500).send('Unable to create reset token email');
@@ -435,7 +433,7 @@ exports.reset = (req, res, next) => {
 
                 let mailOptions = {
                     to: user.email,
-                    from: appConfig.mailOptions.from,
+                    from: global.appConfig.mailOptions.from,
                     subject: 'Your password has been changed',
                     html: emailHTML
                 };
@@ -482,7 +480,7 @@ exports.changePassword = (req, res, next) => {
                                 }
                             }).then(user => {
                                 if (!user) {
-                                    return res.status(400).send(errorHandler.formatMessage(err));
+                                    return res.status(400).send(errorHandler.formatMessage('Invalid credentials'));
                                 } else {
                                     res.json(['Password changed successfully']);
                                 }
@@ -506,7 +504,7 @@ exports.changePassword = (req, res, next) => {
 };
 
 function signInUser(user, res) {
-    let userInfo = _.pick(user, [...appConfig.whitelistedUserFields, "id"]);
-    let token = jwt.sign({ user: userInfo }, appConfig.Security.JWT_SECRET);
+    let userInfo = _.pick(user, [...global.appConfig.whitelistedUserFields, "id"]);
+    let token = jwt.sign({ user: userInfo }, global.appConfig.Security.JWT_SECRET);
     res.json(token);
 }

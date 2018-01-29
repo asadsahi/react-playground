@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { logout } from '../services';
+import { logoutAction } from '../actions';
 import { Cultures } from './Cultures';
+
+import store from '../store';
 
 export class Navigation extends Component {
   state = {
@@ -70,7 +72,7 @@ export class Navigation extends Component {
             <Cultures />
           </ul>
           <ul className="navbar-nav ml-auto">
-            {this.props.authed
+            {this.props.auth.authenticated
               ? [
                   <li className="nav-item" key="profile">
                     <NavLink
@@ -78,7 +80,7 @@ export class Navigation extends Component {
                       to="/profile"
                       activeClassName="active"
                     >
-                      {this.props.user.email}
+                      {this.props.auth.user.email}
                     </NavLink>
                   </li>,
                   <li className="nav-item" key="logout">
@@ -86,7 +88,7 @@ export class Navigation extends Component {
                       className="nav-link"
                       href=""
                       onClick={() => {
-                        logout();
+                        store.dispatch(logoutAction());
                       }}
                     >
                       Logout

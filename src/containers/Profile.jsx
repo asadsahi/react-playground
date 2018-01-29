@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { FormWrapper, TextInput, validations } from '../components';
 import { reduxForm, Field } from 'redux-form';
-import { profileUpdate } from '../services';
+// import { profileUpdate } from '../services';
 
 class Profile extends Component {
   handleSubmit = values => {
-    profileUpdate(values);
+    console.log(values);
+    // profileUpdate(values);
   };
 
   render() {
