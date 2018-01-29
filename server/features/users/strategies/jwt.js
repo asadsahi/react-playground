@@ -7,7 +7,7 @@ let passport = require('passport'),
 module.exports = () => {
     let opts = {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-        secretOrKey: appConfig.Security.JWT_SECRET
+        secretOrKey: global.appConfig.Security.JWT_SECRET
     };
     passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
         User.findOne(
@@ -17,7 +17,7 @@ module.exports = () => {
                     { model: DB.UserImage, attributes: ['id'] }
                 ],
                 where: {
-                    id: jwt_payload.user.id
+                    id: jwt_payload.id
                 }
             })
             .then(user => {

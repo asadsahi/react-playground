@@ -3,8 +3,8 @@ import React from 'react';
 export const Home = () => (
   <div>
     <div className="jumbotron">
-      <h1>React firebase playground</h1> A Single Page Application built using
-      React and firebase
+      <h1>React fullstack</h1> A Single Page Application built using React and
+      Nodejs
     </div>
     <div className="row">
       <div className="col-md-6">
@@ -17,10 +17,13 @@ export const Home = () => (
         </p>
       </div>
       <div className="col-md-6">
-        <h4>Firebase</h4>
-        <p>Build apps fast, without managing infrastructure</p>
+        <h4>NodeJs</h4>
         <p>
-          <a className="btn btn-info" href="https://firebase.google.com/">
+          Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript
+          engine
+        </p>
+        <p>
+          <a className="btn btn-info" href="https://nodejs.org/en/">
             More info »
           </a>
         </p>

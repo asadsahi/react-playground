@@ -17,6 +17,7 @@ export class Navigation extends Component {
   };
 
   render() {
+    const { auth, content } = this.props;
     return (
       <nav className="navbar navbar-expand-sm navbar-light top-nav">
         <NavLink className="navbar-brand" to="/">
@@ -27,7 +28,7 @@ export class Navigation extends Component {
             height="30"
             className="d-inline-block align-top"
           />
-          &nbsp;React playground
+          &nbsp;{content.TITLE}
         </NavLink>
         <button
           onClick={this.toggle}
@@ -56,7 +57,7 @@ export class Navigation extends Component {
                 to="/"
                 activeClassName="active"
               >
-                Home
+                {content.APP_NAV_HOME}
               </NavLink>
             </li>
             <li className="nav-item">
@@ -65,14 +66,24 @@ export class Navigation extends Component {
                 to="/examples"
                 activeClassName="active"
               >
-                Examples
+                {content.APP_NAV_EXAMPLES}
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                to="/about"
+                activeClassName="active"
+              >
+                {content.APP_NAV_ABOUT}
               </NavLink>
             </li>
 
             <Cultures />
           </ul>
           <ul className="navbar-nav ml-auto">
-            {this.props.auth.authenticated
+            {auth.authenticated
               ? [
                   <li className="nav-item" key="profile">
                     <NavLink
@@ -80,7 +91,7 @@ export class Navigation extends Component {
                       to="/profile"
                       activeClassName="active"
                     >
-                      {this.props.auth.user.email}
+                      {auth.user.email}
                     </NavLink>
                   </li>,
                   <li className="nav-item" key="logout">
@@ -91,7 +102,7 @@ export class Navigation extends Component {
                         store.dispatch(logoutAction());
                       }}
                     >
-                      Logout
+                      {content.APP_NAV_LOGOUT}
                     </a>
                   </li>
                 ]
@@ -102,7 +113,7 @@ export class Navigation extends Component {
                       to="/login"
                       activeClassName="active"
                     >
-                      Login
+                      {content.APP_NAV_LOGIN}
                     </NavLink>
                   </li>,
                   <li className="nav-item" key="register">
@@ -111,7 +122,7 @@ export class Navigation extends Component {
                       to="/register"
                       activeClassName="active"
                     >
-                      Register
+                      {content.APP_NAV_REGISTER}
                     </NavLink>
                   </li>
                 ]}

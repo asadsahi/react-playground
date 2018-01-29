@@ -25,7 +25,7 @@ export default function(str) {
       output += '=';
       break;
     default:
-      throw 'Illegal base64url string!';
+      throw Error('Illegal base64url string!');
   }
 
   try {

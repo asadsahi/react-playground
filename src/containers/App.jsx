@@ -14,6 +14,11 @@ const Login = Loadable({
   loading: () => <Loading />
 });
 
+const About = Loadable({
+  loader: () => import('./About'),
+  loading: () => <Loading />
+});
+
 const Register = Loadable({
   loader: () => import('./Register'),
   loading: () => <Loading />
@@ -29,10 +34,6 @@ class App extends React.Component {
     this.props.loadAppData();
   }
 
-  componentWillUnmount() {
-    this.removeListener();
-  }
-
   render() {
     const timeout = { enter: 300, exit: 200 };
     const currentKey = window.location.pathname.split('/')[1] || '/';
@@ -40,7 +41,10 @@ class App extends React.Component {
       <Loading />
     ) : (
       <div>
-        <Navigation auth={this.props.auth} />
+        <Navigation
+          auth={this.props.auth}
+          content={this.props.appData.content}
+        />
         <TransitionGroup component="main" className="page-main">
           <CSSTransition
             key={currentKey}
@@ -51,6 +55,7 @@ class App extends React.Component {
             <div className="container">
               <Switch>
                 <Route path="/" exact component={Home} />
+                <Route path="/about" exact component={About} />
                 <Route path="/examples" component={Examples} />
                 <PublicRoute
                   authenticated={this.props.auth.authenticated}
@@ -78,7 +83,6 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.auth);
   return {
     appData: state.appData,
     auth: state.auth

@@ -505,6 +505,6 @@ exports.changePassword = (req, res, next) => {
 
 function signInUser(user, res) {
     let userInfo = _.pick(user, [...global.appConfig.whitelistedUserFields, "id"]);
-    let token = jwt.sign({ user: userInfo }, global.appConfig.Security.JWT_SECRET);
+    let token = jwt.sign({ ...userInfo }, global.appConfig.Security.JWT_SECRET);
     res.json(token);
 }
