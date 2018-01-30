@@ -27,7 +27,6 @@ export default class Examples extends Component {
     }
   ];
 
-  componentWillMount() {}
   render() {
     return (
       <div className="row">

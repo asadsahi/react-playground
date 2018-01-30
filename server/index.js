@@ -1,7 +1,9 @@
+
 const _ = require('lodash'),
-  path = require('path'),
   globby = require('globby'),
+  path = require('path'),
   helmet = require('helmet'),
+  cors = require('cors'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
   session = require('express-session'),
@@ -15,11 +17,13 @@ global['appConfig'] = isDev ? require('./config.dev.json') : require('./config.p
 global['appConfig'] = _.merge(global['appConfig'], { isDev: isDev });
 global['errorHandler'] = require('./features/core').errorHandler;
 
+app.use(cors())
+
 app.use(helmet())
 app.disable('x-powered-by');
 app.use(cookieParser());
-app.use(bodyParser.json({ limit: '0.5mb' }));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json()) // handle json data
+app.use(bodyParser.urlencoded({ extended: true })) // handle URL-encoded data
 app.use(morgan('dev'));
 
 const expiryDate = new Date(Date.now() + 20 * 60 * 1000); // 20 minute
@@ -66,7 +70,7 @@ function apiRoutes() {
 
   app.listen(PORT, () => {
     console.log(`Env: ${isDev ? 'Dev' : 'Prod'}`);
-    console.log(`listening on http://localhost:${PORT}`);
+    console.log(`listening on port :${PORT}`);
   });
 
 }

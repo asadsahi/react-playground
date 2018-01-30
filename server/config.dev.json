@@ -1,6 +1,5 @@
 {
-    "appTitle": "NgNode fullstack",
-    "Host": "http://localhost:4200",
+    "appTitle": "React fullstack",
     "database": {
         "dialect": "sqlite",
         "storage": "./react-playground.sqlite"

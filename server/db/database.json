@@ -10,12 +10,8 @@
     "storage": ":memory:"
   },
   "production": {
-    "host": "localhost",
-    "dialect": "postgres",
-    "username": "postgres",
-    "password": "postgres",
-    "logging": false,
-    "database": "react-playground",
-    "dialectOptions": {}
+    "dialect": "sqlite",
+    "storage": "./react-playground.sqlite",
+    "logging": false
   }
 }

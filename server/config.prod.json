@@ -1,6 +1,5 @@
 {
     "appTitle": "NgNode fullstack",
-    "Host": "http://react-playground.herokuapp.com",
     "database": {
         "dialect": "sqlite",
         "storage": "./react-playground.sqlite"

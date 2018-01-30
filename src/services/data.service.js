@@ -3,7 +3,7 @@ import axios from 'axios';
 // https://github.com/axios/axios
 
 let instance = axios.create({
-  baseURL: process.env.HOST
+  baseURL: process.env.REACT_APP_HOST
 });
 
 // Alter defaults after instance has been created
