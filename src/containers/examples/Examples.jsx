@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { NavLinks } from '../../components';
+
 import {
   ReduxExamples,
   ReactCastsExamples,
   EggheadExamples
 } from './components';
 
-export class Examples extends Component {
+export default class Examples extends Component {
   exampleLinks = [
     {
       route: 'reactcasts',
@@ -26,6 +27,7 @@ export class Examples extends Component {
     }
   ];
 
+  componentWillMount() {}
   render() {
     return (
       <div className="row">

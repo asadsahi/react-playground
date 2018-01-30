@@ -29,14 +29,12 @@ const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
 
 function storeSetup() {
   const store = createStore(rootReducer(), initialState, composedEnhancers);
-  store.asyncReducers = {};
   return store;
 }
 const store = storeSetup();
 
-export function injectAsyncReducer(store, name, asyncReducer) {
-  store.asyncReducers[name] = asyncReducer;
-  store.replaceReducer(rootReducer(store.asyncReducers));
+export function injectAsyncReducer(store, asyncReducer) {
+  store.replaceReducer(rootReducer(asyncReducer));
 }
 
 export default store;

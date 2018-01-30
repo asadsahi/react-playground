@@ -6,9 +6,6 @@ import { reducer as reduxFormReducer } from 'redux-form';
 import appData from './app.reducer';
 import auth from './login.reducer';
 import register from './register.reducer';
-// Examples Reducers
-import { exampleReducers } from '../containers/examples/reducers';
-// This allows to add dynamically reducers from lazily loaded modules
 // https://stackoverflow.com/questions/32968016/how-to-dynamically-load-reducers-for-code-splitting-in-a-redux-application
 
 const rootReducer = asyncReducers => {
@@ -18,7 +15,6 @@ const rootReducer = asyncReducers => {
     appData,
     auth,
     register,
-    ...exampleReducers,
     ...asyncReducers
   });
 };

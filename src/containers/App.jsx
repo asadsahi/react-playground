@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Loadable from 'react-loadable';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import store, { injectAsyncReducer } from '../store';
 
 import { PrivateRoute, PublicRoute, Navigation, Loading } from '../components';
-import { Home, Examples } from './';
+import Home from './Home';
 import { loadAppData } from '../actions';
 
 const Login = Loadable({
@@ -27,6 +28,19 @@ const Register = Loadable({
 const Profile = Loadable({
   loader: () => import('./Profile'),
   loading: () => <Loading />
+});
+
+const Examples = Loadable.Map({
+  loading: () => <Loading />,
+  loader: {
+    Examples: () => import('./examples/Examples'),
+    reducers: () => import('./examples/reducers')
+  },
+  render(loaded, props) {
+    let Examples = loaded.Examples.default;
+    injectAsyncReducer(store, loaded.reducers.default);
+    return <Examples {...props} />;
+  }
 });
 
 class App extends React.Component {

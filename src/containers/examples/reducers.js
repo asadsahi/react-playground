@@ -25,4 +25,4 @@ const exampleReducers = {
   products
 };
 
-export { exampleReducers };
+export default exampleReducers;

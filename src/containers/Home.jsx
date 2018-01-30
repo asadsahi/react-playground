@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Home = () => (
+const Home = () => (
   <div>
     <div className="jumbotron">
       <h1>React fullstack</h1> A Single Page Application built using React and
@@ -31,3 +31,5 @@ export const Home = () => (
     </div>
   </div>
 );
+
+export default Home;
