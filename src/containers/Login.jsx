@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { loginAction } from '../actions';
 
 class Login extends Component {
-  state = { loginMessage: null };
   submitHandler = values => {
     this.props.login(values.email, values.password);
   };

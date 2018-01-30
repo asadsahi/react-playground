@@ -1,22 +1,27 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 import { FormWrapper, TextInput, validations } from '../components';
 import { reduxForm, Field } from 'redux-form';
 
+import { registerAction } from '../actions';
+
 class Register extends Component {
-  state = { registerError: null };
   handleSubmit = values => {
-    console.log(values);
-    // register(values.email, values.password).catch(e =>
-    //   this.setState(setErrorMsg(e))
-    // );
+    this.props.register(values);
   };
   render() {
     return (
       <form onSubmit={this.props.handleSubmit(this.handleSubmit)} noValidate>
-        {this.state.registerError && (
-          <div className="alert alert-danger">{this.state.registerError}</div>
+        {this.props.register.error && (
+          <div className="alert alert-danger">{this.props.register.error} </div>
         )}
+        <Field
+          name="username"
+          type="text"
+          component={TextInput}
+          label="Username"
+          validate={[validations.required]}
+        />
         <Field
           name="email"
           type="email"
@@ -32,6 +37,20 @@ class Register extends Component {
           validate={[validations.required]}
         />
 
+        <Field
+          name="firstName"
+          type="text"
+          component={TextInput}
+          label="First name"
+        />
+
+        <Field
+          name="lastName"
+          type="text"
+          component={TextInput}
+          label="Last name"
+        />
+
         <button type="submit" className="btn btn-primary">
           Register
         </button>
@@ -39,6 +58,18 @@ class Register extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  register: state.register
+});
+
+const mapDispatchToProps = dispatch => ({
+  register(values) {
+    dispatch(registerAction(values));
+  }
+});
+
+Register = connect(mapStateToProps, mapDispatchToProps)(Register);
 
 Register = reduxForm({
   form: 'registerForm'

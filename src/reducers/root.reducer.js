@@ -4,7 +4,8 @@ import { reducer as reduxFormReducer } from 'redux-form';
 
 // App Reducers
 import appData from './app.reducer';
-import auth from './auth.reducer';
+import auth from './login.reducer';
+import register from './register.reducer';
 // Examples Reducers
 import { exampleReducers } from '../containers/examples/reducers';
 // This allows to add dynamically reducers from lazily loaded modules
@@ -16,6 +17,7 @@ const rootReducer = asyncReducers => {
     router: routerReducer,
     appData,
     auth,
+    register,
     ...exampleReducers,
     ...asyncReducers
   });

@@ -24,6 +24,25 @@ export const loginAction = (usernameOrEmail, password) => {
   };
 };
 
+export const registerAction = values => {
+  return dispatch => {
+    dispatch({ type: types.REGISTER.REGISTER_START });
+
+    dataService
+      .post('/api/auth/signup', values)
+      .then(res => {
+        dispatch({ type: types.REGISTER.REGISTER_SUCCESS });
+        history.push('/login');
+      })
+      .catch(error => {
+        dispatch({
+          type: types.REGISTER.REGISTER_ERROR,
+          data: error.response.data[0]
+        });
+      });
+  };
+};
+
 export const logoutAction = () => {
   return dispatch => {
     localStorage.removeItem(AUTH_TOKEN);
