@@ -15,7 +15,12 @@ export const loginAction = (usernameOrEmail, password) => {
         dispatch({ type: types.LOGIN.LOGIN_SUCCESS, data: decode(res.data) });
         history.push('/');
       })
-      .catch(error => dispatch({ type: types.LOGIN.LOGIN_ERROR, data: error }));
+      .catch(error => {
+        dispatch({
+          type: types.LOGIN.LOGIN_ERROR,
+          data: error.response.data[0]
+        });
+      });
   };
 };
 

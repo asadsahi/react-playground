@@ -18,8 +18,8 @@ class Login extends Component {
         onSubmit={handleSubmit(this.submitHandler)}
         noValidate
       >
-        {this.state.loginMessage && (
-          <div className="alert alert-danger">{this.state.loginMessage} </div>
+        {this.props.auth.error && (
+          <div className="alert alert-danger">{this.props.auth.error} </div>
         )}
         <Field
           name="email"
@@ -44,7 +44,9 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  auth: state.auth
+});
 
 const mapDispatchToProps = dispatch => ({
   login(username, email) {
